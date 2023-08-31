@@ -1,0 +1,97 @@
+html {
+    display: flex;
+    justify-content: center;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+body {
+    width: 100%;
+    max-width: 1000px;
+}
+
+main {
+    padding: 1vh 2vw;
+}
+
+ul {
+    margin-block-start: 0;
+}
+
+.font-aboshi {
+    font-family: 'Aoboshi One', serif;
+}
+
+.font-cherryBomb {
+    font-family: 'Cherry Bomb One', cursive;
+}
+
+.font-chokokutai {
+    font-family: 'Chokokutai', cursive;
+}
+
+.font-delaGothic {
+    font-family: 'Dela Gothic One', cursive;
+}
+
+#pageTitle {
+    font-size: xx-large;
+    color: white;
+    background-color: firebrick;
+    display: flex;
+    justify-content: center;
+}
+
+#topMessage {
+    margin-bottom: 0.5em;
+}
+
+#indexTitle {
+    font-size: large;
+    font-weight: bold;
+}
+
+.app {
+    margin-bottom: 2em;
+}
+
+.appTitle {
+    font-size: large;
+    font-weight: bold;
+}
+
+.appVersion {
+    text-align: right;
+    color: gray;
+}
+
+.appImages {
+    padding-right: 3vw;
+    padding-left: 3vw;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.appImages img {
+    height: 30vh;
+    width: auto;
+    border: medium solid lightgray;
+    box-sizing: border-box;
+}
+
+.appImages::before {
+    content: '';
+    position: absolute;
+    left: 2vw;
+    width: 3vw;
+    padding-top: 30vh;
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0.001));
+}
+
+.appImages::after {
+    content: '';
+    position: absolute;
+    right: 2vw;
+    width: 3vw;
+    padding-top: 30vh;
+    background: linear-gradient(to left, white, rgba(255, 255, 255, 0.001));
+}
