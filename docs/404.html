@@ -1,1 +1,31 @@
-top 404.html
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="description" content="作者すとれんじのツールまとめページです。">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>すとれんじApps</title>
+
+    <script>
+
+        function onloadFunc() {
+            const url = window.location.href;
+            if (url.slice(-1) !== "/") {
+                let newUrl = url.slice(0, url.lastIndexOf("/") + 1);
+            } else {
+                let newUrl = url.slice(0, url.slice(0, url.length - 1).lastIndexOf("/") + 1);
+            }
+        }
+
+        if (document.readyState === 'complete') {
+            onloadFunc();
+        } else {
+            window.onload = onloadFunc;
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
