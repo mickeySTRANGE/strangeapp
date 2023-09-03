@@ -9,11 +9,10 @@
     <script>
         const url = window.location.href;
         if (url.slice(-1) !== "/") {
-            let newUrl = url.slice(0, url.lastIndexOf("/") + 1);
+            window.location.href = url.slice(0, url.lastIndexOf("/") + 1);
         } else {
-            let newUrl = url.slice(0, url.slice(0, url.length - 1).lastIndexOf("/") + 1);
+            window.location.href = url.slice(0, url.slice(0, url.length - 1).lastIndexOf("/") + 1);
         }
-        window.location.href = newUrl;
     </script>
 </head>
 
