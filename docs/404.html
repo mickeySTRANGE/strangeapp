@@ -7,25 +7,17 @@
     <title>すとれんじApps</title>
 
     <script>
-
-        function onloadFunc() {
-            const url = window.location.href;
-            if (url.slice(-1) !== "/") {
-                let newUrl = url.slice(0, url.lastIndexOf("/") + 1);
-            } else {
-                let newUrl = url.slice(0, url.slice(0, url.length - 1).lastIndexOf("/") + 1);
-            }
-        }
-
-        if (document.readyState === 'complete') {
-            onloadFunc();
+        const url = window.location.href;
+        if (url.slice(-1) !== "/") {
+            let newUrl = url.slice(0, url.lastIndexOf("/") + 1);
         } else {
-            window.onload = onloadFunc;
+            let newUrl = url.slice(0, url.slice(0, url.length - 1).lastIndexOf("/") + 1);
         }
     </script>
 </head>
 
 <body>
+    page not found..
 </body>
 
 </html>
