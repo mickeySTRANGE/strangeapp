@@ -46,12 +46,12 @@ class Timer extends React.Component {
                     alert(123);
                     const register = await window.navigator.serviceWorker.register("js/service-worker.js");
                     await register.update();
+                    register.active.postMessage("Hi service worker");
 
-                    console.log(navigator.serviceWorker.ready);
-                    navigator.serviceWorker.ready.then((registration) => {
-                        console.log("サービスワーカーがアクティブ:", registration.active);
-                        registration.active.postMessage("Hi service worker");
-                    });
+                    // console.log(navigator.serviceWorker.ready);
+                    // navigator.serviceWorker.ready.then((registration) => {
+                    //     console.log("サービスワーカーがアクティブ:", registration.active);
+                    // });
                 }
             } else if (Notification.permission !== "denied") {
                 Notification.requestPermission().then((permission) => {
