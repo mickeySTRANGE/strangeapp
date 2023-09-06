@@ -1,0 +1,252 @@
+html {
+    display: flex;
+    justify-content: center;
+    user-select: none;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    width: min(100%, 70vh);
+    max-width: 1000px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    font-family: 'Monomaniac One', sans-serif;
+    font-size: xx-large;
+    color: white;
+    background-color: firebrick;
+    position: absolute;
+    top: 0;
+    margin-bottom: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.timer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.timer:first-child {
+    margin-top: 5vh;
+}
+
+.timer:last-child {
+    margin-bottom: 5vh;
+}
+
+.setting {
+    font-size: 5vh;
+    width: 100%;
+    text-align: right;
+}
+
+#SoundSettingPopupInner {
+    font-size: 10vh;
+}
+
+.vibrateSvg {
+    height: 10vh;
+    width: 10vh;
+}
+
+.settingRow {
+    margin: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+.settingButton {
+    border-radius: 10%;
+    border: thick solid black;
+    padding: 1vh;
+    margin-right: 2vh;
+}
+
+.settingButton.on {
+    background-color: black;
+    color: white;
+    fill: white;
+}
+
+.settingButton.off {
+    background-color: white;
+    color: black;
+    fill: black;
+}
+
+.testButton {
+    border-radius: 10%;
+    background-color: lightgray;
+    white-space: nowrap;
+    font-family: 'Monomaniac One', sans-serif;
+    font-size: 3vh;
+}
+
+.clock {
+    font-size: 10vh;
+    border-radius: 50%;
+    width: 80%;
+    padding-top: 80%;
+    position: relative;
+}
+
+.timerPanel {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.time {
+    width: 100%;
+    text-align: center;
+}
+
+.steps {
+    font-size: 5vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bells {
+    width: 20vh;
+    text-align: center;
+}
+
+.stepTime {
+    width: 20vh;
+    text-align: left;
+}
+
+#circleArea1 {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#circleArea2 {
+    width: 100%;
+    position: relative;
+}
+
+#circleSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+#circle {
+    stroke: firebrick;
+    stroke-width: 10px;
+    fill: transparent;
+    stroke-dasharray: 629px;
+    stroke-dashoffset: 0px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin-top: 1vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dummy {
+    color: rgba(0, 0, 0, 0);
+}
+
+#masterlink {
+    color: black;
+    text-decoration: none;
+}
+
+.font-aoboshi {
+    font-family: 'Aoboshi One', serif;
+}
+
+.font-cherryBomb {
+    font-family: 'Cherry Bomb One', cursive;
+}
+
+.font-chokokutai {
+    font-family: 'Chokokutai', cursive;
+}
+
+.font-delaGothic {
+    font-family: 'Dela Gothic One', cursive;
+}
+
+#version {
+    color: gray;
+}
+
+/* 
+ * for popup
+ */
+
+.labelForPopup {
+    display: block;
+}
+
+.popupCheckbox {
+    display: none;
+}
+
+.popupCheckbox:not(checked)+.overlay {
+    display: none;
+}
+
+.popupCheckbox:checked+.overlay {
+    display: block;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+div[id$="PopupInner"] {
+    z-index: 10000;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
