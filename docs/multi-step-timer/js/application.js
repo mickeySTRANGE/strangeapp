@@ -26,7 +26,7 @@ class Timer extends React.Component {
         } else if (target === "vibrate") {
             this.setState({ isVibrate: !this.state.isVibrate });
         } else if (target === "notification") {
-            this.setState({ isNotification: !this.state.isNotification });
+            this.setState({ isNotification: isAvailablePush() && !this.state.isNotification });
         }
     }
 
@@ -37,20 +37,10 @@ class Timer extends React.Component {
         } else if (target === "vibrate") {
             navigator.vibrate([500, 500, 500, 500, 500]);
         } else if (target === "notification") {
-            if (!("Notification" in window)) {
-                alert("お使いのデバイスはプッシュ通知に非対応なようです。");
-            } else if (Notification.permission === "granted") {
+            if (isAvailablePush()) {
                 if (navigator.serviceWorker) {
                     pushNotification("プッシュ通知のテストです。");
                 }
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then((permission) => {
-                    if (permission === "granted") {
-                        if (navigator.serviceWorker) {
-                            pushNotification("プッシュ通知のテストです。");
-                        }
-                    }
-                });
             }
         }
     }
@@ -61,8 +51,18 @@ class Timer extends React.Component {
             const nowTime = Date.now();
             this.setState({ nowTime: nowTime });
             if (nowTime > this.state.finishTime) {
-                FINISH_SOUND.play();
-                navigator.vibrate([500, 500, 500, 500, 500]);
+                if (this.state.isSound) {
+                    FINISH_SOUND.play();
+                }
+                if (this.state.isVibrate) {
+                    navigator.vibrate([500, 500, 500, 500, 500]);
+                }
+                if (this.state.isNotification) {
+                    const displayDate = new Date(this.state.settingTime);
+                    const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
+                    const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+                    pushNotification(displayMinutes + ":" + displaySeconds + "のタイマーが完了しました。");
+                }
                 this.onClickStop();
             }
         }, 10);
@@ -297,7 +297,28 @@ class Popup extends React.Component {
     }
 }
 
+function isAvailablePush() {
+
+    if (!("Notification" in window)) {
+        alert("お使いのデバイスはプッシュ通知に非対応なようです。");
+        return false;
+    } else if (Notification.permission === "granted") {
+        return true;
+    } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+                return true;
+            }
+            return false;
+        });
+    } else if (Notification.permission === "denied") {
+        alert("プッシュ通知の権限を確認してください。");
+        return false;
+    }
+}
+
 async function pushNotification(message) {
+
     const register = await window.navigator.serviceWorker.register("js/service-worker.js");
     await register.update();
     register.active.postMessage(message);
