@@ -37,26 +37,18 @@ class Timer extends React.Component {
         } else if (target === "vibrate") {
             navigator.vibrate([500, 500, 500, 500, 500]);
         } else if (target === "notification") {
-            alert(Notification.permission);
             if (!("Notification" in window)) {
                 alert("お使いのデバイスはプッシュ通知に非対応なようです。");
             } else if (Notification.permission === "granted") {
                 if (navigator.serviceWorker) {
-
-                    alert(123);
-                    const register = await window.navigator.serviceWorker.register("js/service-worker.js");
-                    await register.update();
-                    register.active.postMessage("Hi service worker");
-
-                    // console.log(navigator.serviceWorker.ready);
-                    // navigator.serviceWorker.ready.then((registration) => {
-                    //     console.log("サービスワーカーがアクティブ:", registration.active);
-                    // });
+                    pushNotification("プッシュ通知のテストです。");
                 }
             } else if (Notification.permission !== "denied") {
                 Notification.requestPermission().then((permission) => {
                     if (permission === "granted") {
-                        const notification = new Notification("こんにちは！");
+                        if (navigator.serviceWorker) {
+                            pushNotification("プッシュ通知のテストです。");
+                        }
                     }
                 });
             }
@@ -303,6 +295,12 @@ class Popup extends React.Component {
             </div>
         );
     }
+}
+
+async function pushNotification(message) {
+    const register = await window.navigator.serviceWorker.register("js/service-worker.js");
+    await register.update();
+    register.active.postMessage(message);
 }
 
 function onloadFunc() {
