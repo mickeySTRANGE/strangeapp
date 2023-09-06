@@ -30,7 +30,7 @@ class Timer extends React.Component {
         }
     }
 
-    onClickSoundTest(target) {
+    async onClickSoundTest(target) {
 
         if (target === "sound") {
             FINISH_SOUND.play();
@@ -42,9 +42,11 @@ class Timer extends React.Component {
                 alert("お使いのデバイスはプッシュ通知に非対応なようです。");
             } else if (Notification.permission === "granted") {
                 if (navigator.serviceWorker) {
+
                     alert(123);
-                    navigator.serviceWorker.register("js/service-worker.js");                    
-                    
+                    const register = await window.navigator.serviceWorker.register("js/service-worker.js");
+                    await register.update();
+
                     console.log(navigator.serviceWorker.ready);
                     navigator.serviceWorker.ready.then((registration) => {
                         console.log("サービスワーカーがアクティブ:", registration.active);
