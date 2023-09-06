@@ -37,17 +37,22 @@ class Timer extends React.Component {
         } else if (target === "vibrate") {
             navigator.vibrate([500, 500, 500, 500, 500]);
         } else if (target === "notification") {
-            alert(111);
             alert(Notification.permission);
             if (!("Notification" in window)) {
                 alert("お使いのデバイスはプッシュ通知に非対応なようです。");
             } else if (Notification.permission === "granted") {
-                alert(123);
-                const notification = new Notification("こんにちは！");
+                if (navigator.serviceWorker) {
+                    alert(123);
+                    navigator.serviceWorker.register("js/service-worker.js");                    
+                    
+                    console.log(navigator.serviceWorker.ready);
+                    navigator.serviceWorker.ready.then((registration) => {
+                        console.log("サービスワーカーがアクティブ:", registration.active);
+                        registration.active.postMessage("Hi service worker");
+                    });
+                }
             } else if (Notification.permission !== "denied") {
-                alert(456);
                 Notification.requestPermission().then((permission) => {
-                    alert(789);
                     if (permission === "granted") {
                         const notification = new Notification("こんにちは！");
                     }
