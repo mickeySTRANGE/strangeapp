@@ -36,9 +36,7 @@ class Timer extends React.Component {
             navigator.vibrate([500, 500, 500, 500, 500]);
         } else if (target === "notification") {
             if (isAvailablePush()) {
-                if (navigator.serviceWorker) {
-                    pushNotification("プッシュ通知のテストです。");
-                }
+                pushNotification("プッシュ通知のテストです。");
             }
         }
     }
@@ -71,10 +69,10 @@ class Timer extends React.Component {
                 navigator.vibrate(pattern);
             }
             if (this.state.isNotification) {
-                const displayDate = new Date(this.state.stepTimes[index]);
+                const displayDate = new Date(this.state.settingSteps[index]);
                 const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
                 const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
-                pushNotification(displayMinutes + ":" + displaySeconds + "のタイマーが完了しました。");
+                pushNotification(displayMinutes + ":" + displaySeconds);
             }
         }
     }
