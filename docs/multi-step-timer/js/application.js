@@ -3,16 +3,14 @@ class Timer extends React.Component {
     constructor() {
         super();
         this.state = {
-            settingTime: 0.05 * 60 * 1000,
-            settingSteps: [0.5 * 60 * 1000, 1 * 60 * 1000, 0],
+            settingTime: 0.3 * 60 * 1000,
+            settingSteps: [0.1 * 60 * 1000, 0.2 * 60 * 1000, 0],
             isSound: true,
             isVibrate: true,
             isNotification: false,
             startTime: 0,
             nowTime: 0,
-            stepTime1: 0,
-            stepTime2: 0,
-            stepTime3: 0,
+            stepTimes: Array(3).fill(0),
             finishTime: 0,
             intervalId: 0,
             timerStatus: TIMER_STATUS_SETTING
@@ -45,25 +43,60 @@ class Timer extends React.Component {
         }
     }
 
+    notify(index) {
+
+        if (index === -1) {
+            if (this.state.isSound) {
+                FINISH_SOUND.play();
+            }
+            if (this.state.isVibrate) {
+                navigator.vibrate([500, 500, 500, 500, 500]);
+            }
+            if (this.state.isNotification) {
+                const displayDate = new Date(this.state.settingTime);
+                const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
+                const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+                pushNotification(displayMinutes + ":" + displaySeconds);
+            }
+        } else {
+            if (this.state.isSound) {
+                BELL_SOUND[index].play();
+            }
+            if (this.state.isVibrate) {
+                let pattern = [250];
+                for (let i = 0; i < index; i++) {
+                    pattern.push(0);
+                    pattern.push(250);
+                }
+                navigator.vibrate(pattern);
+            }
+            if (this.state.isNotification) {
+                const displayDate = new Date(this.state.stepTimes[index]);
+                const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
+                const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+                pushNotification(displayMinutes + ":" + displaySeconds + "のタイマーが完了しました。");
+            }
+        }
+    }
+
     startInterval() {
 
         const intervalId = setInterval(() => {
             const nowTime = Date.now();
             this.setState({ nowTime: nowTime });
+
+            for (let i = 0; i < this.state.settingSteps.length; i++) {
+                if (nowTime > this.state.stepTimes[i] && this.state.stepTimes[i] > 0) {
+                    let steps = this.state.stepTimes.slice();
+                    steps[i] = 0;
+                    this.setState({ stepTimes: steps });
+                    this.notify(i);
+                }
+            }
+
             if (nowTime > this.state.finishTime) {
-                if (this.state.isSound) {
-                    FINISH_SOUND.play();
-                }
-                if (this.state.isVibrate) {
-                    navigator.vibrate([500, 500, 500, 500, 500]);
-                }
-                if (this.state.isNotification) {
-                    const displayDate = new Date(this.state.settingTime);
-                    const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
-                    const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
-                    pushNotification(displayMinutes + ":" + displaySeconds + "のタイマーが完了しました。");
-                }
                 this.onClickStop();
+                this.notify(-1);
             }
         }, 10);
         this.setState({ intervalId: intervalId });
@@ -72,9 +105,15 @@ class Timer extends React.Component {
     onClickStart() {
 
         const startTime = Date.now();
+        let stepTimes = [];
+        for (let i = 0; i < this.state.settingSteps.length; i++) {
+            stepTimes.push(this.state.settingSteps[i] === 0 ? 0 : startTime + this.state.settingSteps[i]);
+        }
+
         let updateState = {
             startTime: startTime,
             nowTime: startTime,
+            stepTimes: stepTimes,
             finishTime: startTime + this.state.settingTime,
             timerStatus: TIMER_STATUS_TICKING
         };
@@ -96,9 +135,15 @@ class Timer extends React.Component {
 
         const nowTime = Date.now();
         const passedTime = this.state.nowTime - this.state.startTime;
+        let stepTimes = [];
+        for (let i = 0; i < this.state.settingSteps.length; i++) {
+            stepTimes.push(this.state.stepTimes[i] === 0 ? 0 : nowTime - passedTime + this.state.settingSteps[i]);
+        }
+
         let updateState = {
             startTime: nowTime - passedTime,
             nowTime: nowTime,
+            stepTimes: stepTimes,
             finishTime: nowTime - passedTime + this.state.settingTime,
             timerStatus: TIMER_STATUS_TICKING
         };
@@ -113,6 +158,7 @@ class Timer extends React.Component {
         let updateState = {
             startTime: 0,
             nowTime: 0,
+            stepTimes: Array(3).fill(0),
             finishTime: 0,
             intervalId: 0,
             timerStatus: TIMER_STATUS_SETTING
@@ -277,7 +323,11 @@ const TIMER_STATUS_SETTING = 0;
 const TIMER_STATUS_TICKING = 1;
 const TIMER_STATUS_PAUSE = 2;
 
-const BELL_SOUND = new Audio("sound/bell.mp3");
+const BELL_SOUND = [
+    new Audio("sound/bell1.mp3"),
+    new Audio("sound/bell2.mp3"),
+    new Audio("sound/bell3.mp3")
+];
 const FINISH_SOUND = new Audio("sound/finish.mp3");
 
 /**
