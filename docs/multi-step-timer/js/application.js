@@ -48,6 +48,16 @@ class TimePicker extends React.Component {
         secondsDiv.innerText = seconds.toString().padStart(2, "0");
     }
 
+    onClickDone() {
+        const minutesDiv = document.getElementById(`timePicker${this.props.id}Minutes`);
+        const secondsDiv = document.getElementById(`timePicker${this.props.id}Seconds`);
+
+        let minutes = minutesDiv.innerText;
+        let seconds = secondsDiv.innerText;
+
+        this.props.onClickDone(minutes, seconds);
+    }
+
     render() {
 
         return (
@@ -102,7 +112,7 @@ class TimePicker extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="timePickerOk">
+                <div className="timePickerOk" onClick={() => this.onClickDone()}>
                     <GoogleIcon name="done" />
                 </div>
             </div>
@@ -222,6 +232,11 @@ class Timer extends React.Component {
 
     onClickStart() {
 
+        if (this.state.settingTime === 0) {
+            alert("タイマーの時間を設定してください。");
+            return;
+        }
+
         const startTime = Date.now();
         let stepTimes = [];
         for (let i = 0; i < this.state.settingSteps.length; i++) {
@@ -321,6 +336,29 @@ class Timer extends React.Component {
         );
     }
 
+    reflectTimePicker(minutes, seconds, index) {
+
+        const time = (Number(minutes) * 60 + Number(seconds)) * 1000;
+        if (index === -1) {
+            this.setState({ settingTime: time });
+            document.getElementById("TimerSettingPopupCheckbox").checked = false;
+        } else {
+            let steps = this.state.settingSteps.slice();
+            steps[index] = time;
+            steps.sort((a, b) => {
+                if (a === 0) {
+                    return 1;
+                }
+                if (b === 0) {
+                    return -1;
+                }
+                return a - b;
+            });
+            this.setState({ settingSteps: steps });
+            document.getElementById(`Step${index}SettingPopupCheckbox`).checked = false;
+        }
+    }
+
     renderClock() {
 
         const displayTime = this.state.timerStatus === TIMER_STATUS_SETTING ? this.state.settingTime : this.state.finishTime - this.state.nowTime;
@@ -335,7 +373,7 @@ class Timer extends React.Component {
         const isViewPause = this.state.timerStatus === TIMER_STATUS_TICKING;
         const isViewStop = this.state.timerStatus === TIMER_STATUS_TICKING || this.state.timerStatus === TIMER_STATUS_PAUSE;
 
-        const pickerPopupHeader = (
+        const timerSvg = (
             <svg className="timerSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a9,9,0,1,0,9,9A9,9,0,0,0,12,4Zm0,16a7,7,0,1,1,7-7A7,7,0,0,1,12,20ZM21.19,3.81A12.88,12.88,0,0,0,17.06,1l-.78,1.84a11.08,11.08,0,0,1,3.5,2.36,11.43,11.43,0,0,1,1.87,2.49l1.75-1A13.19,13.19,0,0,0,21.19,3.81Zm-13.47-1L6.94,1A12.88,12.88,0,0,0,2.81,3.81,13.19,13.19,0,0,0,.6,6.74l1.75,1A11.43,11.43,0,0,1,4.22,5.22,11.08,11.08,0,0,1,7.72,2.86ZM13,8H11v6h5V12H13Z" /></svg>
         );
 
@@ -350,8 +388,8 @@ class Timer extends React.Component {
                         </div>
                     </div>
                     <div className="timerPanel">
+                        {timerSvg}
                         <label className="time" htmlFor="TimerSettingPopupCheckbox">
-                            <svg className="timerSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a9,9,0,1,0,9,9A9,9,0,0,0,12,4Zm0,16a7,7,0,1,1,7-7A7,7,0,0,1,12,20ZM21.19,3.81A12.88,12.88,0,0,0,17.06,1l-.78,1.84a11.08,11.08,0,0,1,3.5,2.36,11.43,11.43,0,0,1,1.87,2.49l1.75-1A13.19,13.19,0,0,0,21.19,3.81Zm-13.47-1L6.94,1A12.88,12.88,0,0,0,2.81,3.81,13.19,13.19,0,0,0,.6,6.74l1.75,1A11.43,11.43,0,0,1,4.22,5.22,11.08,11.08,0,0,1,7.72,2.86ZM13,8H11v6h5V12H13Z" /></svg>
                             {displayMinutes}:{displaySeconds}
                         </label>
                         <div className={`${isViewStart ? "" : "hidden"}`} onClick={() => this.onClickStart()}>
@@ -369,7 +407,16 @@ class Timer extends React.Component {
                     </div>
                 </div>,
                 <div>
-                    <Popup popupId="TimerSetting" content={<TimePicker id="timer" displayMinutes={displayMinutes} displaySeconds={displaySeconds} header={pickerPopupHeader} />} />
+                    <Popup
+                        popupId="TimerSetting"
+                        content={
+                            <TimePicker
+                                id="timer"
+                                displayMinutes={displayMinutes}
+                                displaySeconds={displaySeconds}
+                                header={timerSvg}
+                                onClickDone={(minutes, seconds) => this.reflectTimePicker(minutes, seconds, -1)} />
+                        } />
                 </div>
             ]
         );
@@ -378,8 +425,9 @@ class Timer extends React.Component {
     renderSteps() {
 
         let steps = [];
+        let isFirstZeroStep = true;
         this.state.settingSteps.forEach((element, index) => {
-            if (element === 0) {
+            if (element === 0 && !isFirstZeroStep) {
                 steps.push(
                     <div className="step">
                         &nbsp;
@@ -388,7 +436,14 @@ class Timer extends React.Component {
                 return;
             }
 
-            const [displayMinutes, displaySeconds] = this.calcDisplay(element);
+            let [displayMinutes, displaySeconds] = this.calcDisplay(element);
+            let pickerDisplayMinutes = displayMinutes;
+            let pickerDisplaySeconds = displaySeconds;
+            if (element === 0) {
+                isFirstZeroStep = false;
+                displayMinutes = "--";
+                displaySeconds = "--";
+            }
 
             let bells = [];
             for (let i = 0; i < index + 1; i++) {
@@ -398,9 +453,26 @@ class Timer extends React.Component {
             }
             steps.push(
                 <label className="step" htmlFor={`Step${index}SettingPopupCheckbox`}>
-                    <div className="bells">{bells}</div>
-                    <div className="stepTime">{displayMinutes}:{displaySeconds}</div>
-                    <Popup popupId={`Step${index}Setting`} content={<TimePicker id={`step${index}`} displayMinutes={displayMinutes} displaySeconds={displaySeconds} header={bells} />} />
+                    <div className={`bells ${element === 0 ? "disableStep" : ""}`}>
+                        {bells}
+                    </div>
+                    <div className={`stepTime ${element === 0 ? "disableStep" : ""}`}>
+                        {displayMinutes}:{displaySeconds}
+                    </div>
+                    <label className={`${element === 0 ? "hiddenIcon" : "disableStep"}`}
+                        htmlFor="" onClick={() => this.reflectTimePicker(0, 0, index)}>
+                        <GoogleIcon name="delete" />
+                    </label>
+                    <Popup
+                        popupId={`Step${index}Setting`}
+                        content={
+                            <TimePicker
+                                id={`step${index}`}
+                                displayMinutes={pickerDisplayMinutes}
+                                displaySeconds={pickerDisplaySeconds}
+                                header={bells}
+                                onClickDone={(minutes, seconds) => this.reflectTimePicker(minutes, seconds, index)} />
+                        } />
                 </label>
             );
         });
@@ -514,6 +586,28 @@ function onloadFunc() {
     const fontClassList = ["font-aoboshi", "font-cherryBomb", "font-chokokutai", "font-delaGothic"];
     let fontClass = fontClassList[Math.floor(Math.random() * fontClassList.length)];
     document.getElementById("masterlink").classList.add(fontClass);
+
+    /**
+     * version
+     */
+    const request = new Request(
+        "version.txt",
+        {
+            method: "GET"
+        });
+    fetch(request).then(
+        function (response) {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            response.text().then(
+                function (responseText) {
+                    document.getElementById("version").innerText = "v" + responseText;
+                    document.getElementById("dummy").innerText = "v" + responseText;
+                }
+            );
+        }
+    );
 }
 
 if (document.readyState === 'complete') {

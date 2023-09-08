@@ -202,6 +202,14 @@ header {
     align-items: center;
 }
 
+.disableStep {
+    color: lightgray;
+}
+
+.hiddenIcon {
+    color: rgba(0, 0, 0, 0);
+}
+
 .bells {
     width: 20vh;
     text-align: center;
