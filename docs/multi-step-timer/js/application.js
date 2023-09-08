@@ -1,10 +1,123 @@
+class TimePicker extends React.Component {
+
+    onClickMinute(number) {
+
+        const minutesDiv = document.getElementById(`timePicker${this.props.id}Minutes`);
+        const secondsDiv = document.getElementById(`timePicker${this.props.id}Seconds`);
+
+        let minutes = Number(minutesDiv.innerText);
+        let seconds = Number(secondsDiv.innerText);
+
+        minutes += number;
+        if (minutes > 59) {
+            minutes = 60;
+            seconds = 0;
+        } else if (minutes < 0) {
+            minutes = 0;
+            seconds = 0;
+        }
+        minutesDiv.innerText = minutes.toString().padStart(2, "0");
+        secondsDiv.innerText = seconds.toString().padStart(2, "0");
+    }
+
+    onClickSecond(number) {
+
+        const minutesDiv = document.getElementById(`timePicker${this.props.id}Minutes`);
+        const secondsDiv = document.getElementById(`timePicker${this.props.id}Seconds`);
+
+        let minutes = Number(minutesDiv.innerText);
+        let seconds = Number(secondsDiv.innerText);
+
+        seconds += number;
+        if (seconds > 59) {
+            minutes += 1;
+            seconds -= 60;
+        } else if (seconds < 0) {
+            minutes -= 1;
+            seconds += 60;
+        }
+        if (minutes > 59) {
+            minutes = 60;
+            seconds = 0;
+        } else if (minutes < 0) {
+            minutes = 0;
+            seconds = 0;
+        }
+
+        minutesDiv.innerText = minutes.toString().padStart(2, "0");
+        secondsDiv.innerText = seconds.toString().padStart(2, "0");
+    }
+
+    render() {
+
+        return (
+            <div className="timePicker">
+                <div className="timePickerHeader">
+                    {this.props.header}
+                </div>
+                <div className="timePickerArea">
+                    <div className="timePickerMinutesArea">
+                        <div className="timePickerButtonArea">
+                            <div className="timePickerButton up" onClick={() => this.onClickMinute(10)}>
+                                <GoogleIcon name="stat_2" />
+                            </div>
+                            <div className="timePickerButton up" onClick={() => this.onClickMinute(1)}>
+                                <GoogleIcon name="stat_1" />
+                            </div>
+                        </div>
+                        <div id={`timePicker${this.props.id}Minutes`}>
+                            {this.props.displayMinutes}
+                        </div>
+                        <div className="timePickerButtonArea">
+                            <div className="timePickerButton down" onClick={() => this.onClickMinute(-10)}>
+                                <GoogleIcon name="stat_minus_2" />
+                            </div>
+                            <div className="timePickerButton down" onClick={() => this.onClickMinute(-1)}>
+                                <GoogleIcon name="stat_minus_1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        :
+                    </div>
+                    <div className="timePickerSecondsArea">
+                        <div className="timePickerButtonArea">
+                            <div className="timePickerButton up" onClick={() => this.onClickSecond(10)}>
+                                <GoogleIcon name="stat_2" />
+                            </div>
+                            <div className="timePickerButton up" onClick={() => this.onClickSecond(1)}>
+                                <GoogleIcon name="stat_1" />
+                            </div>
+                        </div>
+                        <div id={`timePicker${this.props.id}Seconds`}>
+                            {this.props.displaySeconds}
+                        </div>
+                        <div className="timePickerButtonArea">
+                            <div className="timePickerButton down" onClick={() => this.onClickSecond(-10)}>
+                                <GoogleIcon name="stat_minus_2" />
+                            </div>
+                            <div className="timePickerButton down" onClick={() => this.onClickSecond(-1)}>
+                                <GoogleIcon name="stat_minus_1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="timePickerOk">
+                    <GoogleIcon name="done" />
+                </div>
+            </div>
+        );
+    }
+}
+
+
 class Timer extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            settingTime: 0.3 * 60 * 1000,
-            settingSteps: [0.1 * 60 * 1000, 0.2 * 60 * 1000, 0],
+            settingTime: 10 * 60 * 1000,
+            settingSteps: [5 * 60 * 1000, 8 * 60 * 1000, 0],
             isSound: true,
             isVibrate: true,
             isNotification: false,
@@ -15,6 +128,17 @@ class Timer extends React.Component {
             intervalId: 0,
             timerStatus: TIMER_STATUS_SETTING
         };
+    }
+
+    calcDisplay(time) {
+        const displayDate = new Date(time);
+        if (time === 60 * 60 * 1000) {
+            return ["60", "00"];
+        } else {
+            const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
+            const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+            return [displayMinutes, displaySeconds];
+        }
     }
 
     onClickSoundSetting(target) {
@@ -51,9 +175,7 @@ class Timer extends React.Component {
                 navigator.vibrate([500, 500, 500, 500, 500]);
             }
             if (this.state.isNotification) {
-                const displayDate = new Date(this.state.settingTime);
-                const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
-                const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+                const [displayMinutes, displaySeconds] = this.calcDisplay(this.state.settingTime);
                 pushNotification(displayMinutes + ":" + displaySeconds);
             }
         } else {
@@ -69,9 +191,7 @@ class Timer extends React.Component {
                 navigator.vibrate(pattern);
             }
             if (this.state.isNotification) {
-                const displayDate = new Date(this.state.settingSteps[index]);
-                const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
-                const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+                const [displayMinutes, displaySeconds] = this.calcDisplay(this.state.settingSteps[index]);
                 pushNotification(displayMinutes + ":" + displaySeconds);
             }
         }
@@ -169,9 +289,7 @@ class Timer extends React.Component {
         return (
             <div className="setting">
                 <label className="labelForPopup" htmlFor="SoundSettingPopupCheckbox" >
-                    <span class="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                        settings
-                    </span>
+                    <GoogleIcon name="settings" />
                 </label>
                 <input type="checkbox" id="SoundSettingPopupCheckbox" className="popupCheckbox" />
                 <label className="overlay labelForPopup" htmlFor="SoundSettingPopupCheckbox">
@@ -179,9 +297,7 @@ class Timer extends React.Component {
                         <div id="SoundSettingPopupInner">
                             <div className="settingRow">
                                 <div className={`settingButton ${this.state.isSound ? "on" : "off"}`} onClick={() => this.onClickSoundSetting("sound")}>
-                                    <span class="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                                        {this.state.isSound ? "volume_up" : "volume_off"}
-                                    </span>
+                                    <GoogleIcon name={this.state.isSound ? "volume_up" : "volume_off"} />
                                 </div>
                                 <div className="testButton" onClick={() => this.onClickSoundTest("sound")}>おんせいテスト</div>
                             </div>
@@ -194,9 +310,7 @@ class Timer extends React.Component {
                             </div>
                             <div className="settingRow">
                                 <div className={`settingButton ${this.state.isNotification ? "on" : "off"}`} onClick={() => this.onClickSoundSetting("notification")}>
-                                    <span class="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                                        {this.state.isNotification ? "notifications" : "notifications_off"}
-                                    </span>
+                                    <GoogleIcon name={this.state.isNotification ? "notifications" : "notifications_off"} />
                                 </div>
                                 <div className="testButton" onClick={() => this.onClickSoundTest("notification")}>つうちテスト</div>
                             </div>
@@ -209,12 +323,8 @@ class Timer extends React.Component {
 
     renderClock() {
 
-        const displayDate = this.state.timerStatus === TIMER_STATUS_SETTING
-            ? new Date(this.state.settingTime)
-            : new Date(this.state.finishTime - this.state.nowTime);
-
-        const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
-        const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+        const displayTime = this.state.timerStatus === TIMER_STATUS_SETTING ? this.state.settingTime : this.state.finishTime - this.state.nowTime;
+        const [displayMinutes, displaySeconds] = this.calcDisplay(displayTime);
 
         const strokeDashoffset = this.state.timerStatus === TIMER_STATUS_SETTING
             ? "0px" : Math.floor(((this.state.settingTime - displayDate.valueOf()) / this.state.settingTime) * 628).toString() + "px";
@@ -224,41 +334,43 @@ class Timer extends React.Component {
         const isViewPause = this.state.timerStatus === TIMER_STATUS_TICKING;
         const isViewStop = this.state.timerStatus === TIMER_STATUS_TICKING || this.state.timerStatus === TIMER_STATUS_PAUSE;
 
+        const pickerPopupHeader = (
+            <svg className="timerSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a9,9,0,1,0,9,9A9,9,0,0,0,12,4Zm0,16a7,7,0,1,1,7-7A7,7,0,0,1,12,20ZM21.19,3.81A12.88,12.88,0,0,0,17.06,1l-.78,1.84a11.08,11.08,0,0,1,3.5,2.36,11.43,11.43,0,0,1,1.87,2.49l1.75-1A13.19,13.19,0,0,0,21.19,3.81Zm-13.47-1L6.94,1A12.88,12.88,0,0,0,2.81,3.81,13.19,13.19,0,0,0,.6,6.74l1.75,1A11.43,11.43,0,0,1,4.22,5.22,11.08,11.08,0,0,1,7.72,2.86ZM13,8H11v6h5V12H13Z" /></svg>
+        );
+
         return (
-            <div className="clock">
-                <div id="circleArea1">
-                    <div id="circleArea2">
-                        <svg id="circleSvg" viewBox="0 0 210 210">
-                            <circle id="circle" cx="105" cy="105" r="100" style={{ "stroke-dashoffset": strokeDashoffset }} />
-                        </svg>
+            [
+                <div className="clock">
+                    <div id="circleArea1">
+                        <div id="circleArea2">
+                            <svg id="circleSvg" viewBox="0 0 210 210">
+                                <circle id="circle" cx="105" cy="105" r="100" style={{ "stroke-dashoffset": strokeDashoffset }} />
+                            </svg>
+                        </div>
                     </div>
+                    <div className="timerPanel">
+                        <label className="time" htmlFor="TimerSettingPopupCheckbox">
+                            <svg className="timerSvg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,4a9,9,0,1,0,9,9A9,9,0,0,0,12,4Zm0,16a7,7,0,1,1,7-7A7,7,0,0,1,12,20ZM21.19,3.81A12.88,12.88,0,0,0,17.06,1l-.78,1.84a11.08,11.08,0,0,1,3.5,2.36,11.43,11.43,0,0,1,1.87,2.49l1.75-1A13.19,13.19,0,0,0,21.19,3.81Zm-13.47-1L6.94,1A12.88,12.88,0,0,0,2.81,3.81,13.19,13.19,0,0,0,.6,6.74l1.75,1A11.43,11.43,0,0,1,4.22,5.22,11.08,11.08,0,0,1,7.72,2.86ZM13,8H11v6h5V12H13Z" /></svg>
+                            {displayMinutes}:{displaySeconds}
+                        </label>
+                        <div className={`${isViewStart ? "" : "hidden"}`} onClick={() => this.onClickStart()}>
+                            <GoogleIcon name="play_circle" />
+                        </div>
+                        <div className={`${isViewRestart ? "" : "hidden"}`} onClick={() => this.onClickRestart()}>
+                            <GoogleIcon name="play_circle" />
+                        </div>
+                        <div className={`${isViewPause ? "" : "hidden"}`} onClick={() => this.onClickPause()}>
+                            <GoogleIcon name="pause_circle" />
+                        </div>
+                        <div className={`${isViewStop ? "" : "hidden"}`} onClick={() => this.onClickStop()}>
+                            <GoogleIcon name="stop_circle" />
+                        </div>
+                    </div>
+                </div>,
+                <div>
+                    <Popup popupId="TimerSetting" content={<TimePicker id="timer" displayMinutes={displayMinutes} displaySeconds={displaySeconds} header={pickerPopupHeader} />} />
                 </div>
-                <div className="timerPanel">
-                    <div className="time">
-                        {displayMinutes}:{displaySeconds}
-                    </div>
-                    <div className={`${isViewStart ? "" : "hidden"}`} onClick={() => this.onClickStart()}>
-                        <span className="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                            play_circle
-                        </span>
-                    </div>
-                    <div className={`${isViewRestart ? "" : "hidden"}`} onClick={() => this.onClickRestart()}>
-                        <span className="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                            play_circle
-                        </span>
-                    </div>
-                    <div className={`${isViewPause ? "" : "hidden"}`} onClick={() => this.onClickPause()}>
-                        <span className="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                            pause_circle
-                        </span>
-                    </div>
-                    <div className={`${isViewStop ? "" : "hidden"}`} onClick={() => this.onClickStop()}>
-                        <span className="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                            stop_circle
-                        </span>
-                    </div>
-                </div>
-            </div>
+            ]
         );
     }
 
@@ -274,23 +386,21 @@ class Timer extends React.Component {
                 );
                 return;
             }
-            const displayDate = new Date(element);
-            const displayMinutes = displayDate.getUTCMinutes().toString().padStart(2, "0");
-            const displaySeconds = displayDate.getUTCSeconds().toString().padStart(2, "0");
+
+            const [displayMinutes, displaySeconds] = this.calcDisplay(element);
 
             let bells = [];
             for (let i = 0; i < index + 1; i++) {
                 bells.push(
-                    <span className="material-symbols-outlined" style={{ "font-size": "inherit" }}>
-                        room_service
-                    </span>
+                    <GoogleIcon name="room_service" />
                 );
             }
             steps.push(
-                <div className="step">
+                <label className="step" htmlFor={`Step${index}SettingPopupCheckbox`}>
                     <div className="bells">{bells}</div>
                     <div className="stepTime">{displayMinutes}:{displaySeconds}</div>
-                </div>
+                    <Popup popupId={`Step${index}Setting`} content={<TimePicker id={`step${index}`} displayMinutes={displayMinutes} displaySeconds={displaySeconds} header={bells} />} />
+                </label>
             );
         });
 
@@ -334,13 +444,30 @@ const FINISH_SOUND = new Audio("sound/finish.mp3");
 class Popup extends React.Component {
     render() {
         return (
-            <div>
-                <label className="labelForPopup" htmlFor={this.props.id + 'Checkbox'}
-                    dangerouslySetInnerHTML={{ __html: this.props.triggerHtml }} />
-                <input type="checkbox" id={this.props.id + 'Checkbox'} className="popupCheckbox" />
-                <label className="overlay labelForPopup" htmlFor={this.props.id + 'Checkbox'}
-                    dangerouslySetInnerHTML={{ __html: this.props.innerHtml }} />
-            </div>
+            [
+                <input type="checkbox" id={`${this.props.popupId}PopupCheckbox`} className="popupCheckbox" />,
+                <label className="overlay labelForPopup" htmlFor={`${this.props.popupId}PopupCheckbox`}>
+                    <label className="labelForPopup" htmlFor="">
+                        <div id={`${this.props.popupId}PopupInner`}>
+                            {this.props.content}
+                        </div>
+                    </label>
+                </label>
+            ]
+        );
+    }
+}
+
+class GoogleIcon extends React.Component {
+    render() {
+        let size = "inherit";
+        if (typeof this.props.size !== "undefined") {
+            size = this.props.size;
+        }
+        return (
+            <span className="material-symbols-outlined" style={{ "font-size": size }}>
+                {this.props.name}
+            </span>
         );
     }
 }
@@ -386,20 +513,6 @@ function onloadFunc() {
     const fontClassList = ["font-aoboshi", "font-cherryBomb", "font-chokokutai", "font-delaGothic"];
     let fontClass = fontClassList[Math.floor(Math.random() * fontClassList.length)];
     document.getElementById("masterlink").classList.add(fontClass);
-
-    /**
-     * for popup
-     */
-    const popupContainers = document.getElementsByClassName('popupContainer');
-    for (let key in popupContainers) {
-        if (popupContainers.hasOwnProperty(key)) {
-            const popupTrigger = document.getElementById(popupContainers[key].id + 'Trigger');
-            const popupInner = document.getElementById(popupContainers[key].id + 'Inner');
-            const target = ReactDOM.createRoot(popupContainers[key]);
-            target.render(<Popup id={popupContainers[key].id} triggerHtml={popupTrigger.outerHTML}
-                innerHtml={popupInner.outerHTML} />);
-        }
-    }
 }
 
 if (document.readyState === 'complete') {
