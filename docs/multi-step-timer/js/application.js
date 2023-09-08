@@ -324,6 +324,7 @@ class Timer extends React.Component {
     renderClock() {
 
         const displayTime = this.state.timerStatus === TIMER_STATUS_SETTING ? this.state.settingTime : this.state.finishTime - this.state.nowTime;
+        const displayDate = new Date(displayTime);
         const [displayMinutes, displaySeconds] = this.calcDisplay(displayTime);
 
         const strokeDashoffset = this.state.timerStatus === TIMER_STATUS_SETTING
