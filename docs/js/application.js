@@ -16,6 +16,10 @@ function setAppVersion() {
         {
             url: "https://new-book-notice.herokuapp.com/GetApplicationVersion",
             id: "newBookNoticeVersion"
+        },
+        {
+            url: "https://mickeystrange.github.io/strangeapp/multi-step-timer/version.txt",
+            id: "multiStepTimerVersion"
         }
     ];
 
