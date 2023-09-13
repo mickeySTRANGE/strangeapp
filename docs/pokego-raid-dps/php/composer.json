@@ -1,0 +1,12 @@
+{
+    "require": {
+        "mickey-strange/php-utils": "dev-main@dev",
+        "paquettg/php-html-parser": "^3.1"
+    },
+    "repositories": {
+        "mickey-strange/php-utils": {
+            "type": "vcs",
+            "url": "https://github.com/mickeySTRANGE/php-utils"
+        }
+    }
+}

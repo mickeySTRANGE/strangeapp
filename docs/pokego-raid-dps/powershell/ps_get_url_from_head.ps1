@@ -1,0 +1,1 @@
+Get-Content C:\Users\micke\Documents\GitHub\strangeapp\docs\pokego-raid-dps\php\index_url_list.txt | Select-Object -Index 0
