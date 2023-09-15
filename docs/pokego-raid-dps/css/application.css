@@ -2,13 +2,13 @@ html {
     display: flex;
     justify-content: center;
     user-select: none;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'RocknRoll One', sans-serif;
 }
 
 body {
     width: min(100%, 70vh);
     max-width: 1000px;
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
 }
@@ -21,12 +21,11 @@ main {
 }
 
 header {
-    font-family: 'Monomaniac One', sans-serif;
     font-size: xx-large;
     color: white;
     background-color: firebrick;
-    position: absolute;
-    top: 0;
+    /* position: absolute;
+    top: 0; */
     margin-bottom: 1vh;
     width: 100%;
     display: flex;
@@ -35,8 +34,8 @@ header {
 
 
 footer {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     margin-top: 1vh;
     width: 100%;
     display: flex;
@@ -71,4 +70,8 @@ footer {
 
 #version {
     color: gray;
+}
+
+.rakutenbanner {
+    text-align: center;
 }
