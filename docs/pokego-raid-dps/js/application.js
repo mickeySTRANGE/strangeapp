@@ -4,19 +4,36 @@ class Calculator extends React.Component {
 
     constructor() {
         super();
+
+        const initTarget = "ゲノセクト(ブレイズカセット)";
         this.state = {
-            targetName: "ゲノセクト(ブレイズカセット)",
+            targetName: initTarget,
             isExcludeMegaEvolved: true,
             isExcludeShadowApex: true
         };
     }
 
+    onChangePokemonSelect() {
+        const target = document.getElementById("pokemonSelect").value;
+        this.setState({ targetName: target });
+    }
+
     renderSearchArea() {
+
+        const options = [];
+
+        POKEMON_DATA.forEach(pokemon => {
+            if (this.state.targetName === pokemon.name) {
+                options.push(<option value={pokemon.name} selected>{pokemon.name}</option>);
+            } else {
+                options.push(<option value={pokemon.name}>{pokemon.name}</option>);
+            }
+        });
 
         return (
             <div id="searchArea">
-                <select id="pokemonPulldown">
-                    <option>相手のポケモンを選択してください。</option>
+                <select id="pokemonSelect" onChange={() => this.onChangePokemonSelect()}>
+                    {options}
                 </select>
             </div>
         );
@@ -34,7 +51,7 @@ class Calculator extends React.Component {
 
     renderResult() {
 
-        const dpsList = calc(this.state.targetName);
+        const dpsList = this.calc();
 
         const resultList = [];
         dpsList.forEach((dps, index) => {
@@ -82,6 +99,75 @@ class Calculator extends React.Component {
         jsxArray.push(this.renderResult());
 
         return jsxArray;
+    }
+
+    calc() {
+        const start = Date.now();
+
+        const target = getPokemonData(this.state.targetName);
+
+        let dpsList = [];
+        POKEMON_DATA.forEach(attackerData => {
+            // 最大CP2000以下はどうせ結果ふるわないのでスキップ
+            if (attackerData.cp < 2000) {
+                return;
+            }
+
+            // メガシンカはスキップ
+            if (isMegaEvolved(attackerData.name)) {
+                return;
+            }
+
+            let normalAttack = null;
+            let specialAttack = null;
+            let dps = -1;
+
+            // ノーマルアタックとスペシャルアタックのクロスジョインで各DPSを計算する
+            attackerData.normalAttack.forEach(currentNormalAttack => {
+                const currentNormalAttackData = getAttackData(currentNormalAttack);
+                const normalDamage = calcOnceDamage(attackerData, target, currentNormalAttackData);
+                attackerData.specialAttack.forEach(currentSpecialAttack => {
+                    const currentSpecialAttackData = getAttackData(currentSpecialAttack);
+                    const specialDamage = calcOnceDamage(attackerData, target, currentSpecialAttackData);
+                    let currentDps = 0;
+                    if (currentSpecialAttackData.gauge === 1) {
+                        // スペシャルアタック1回分を計算
+                        const normalCount = Math.floor(100 / currentNormalAttackData.epTank) + 1;
+                        const totalDamage = normalDamage * normalCount + specialDamage;
+                        const totalTime = currentNormalAttackData.time * normalCount + currentSpecialAttackData.time;
+                        currentDps = totalDamage / totalTime;
+                    } else {
+                        // ノーマルアタック100回分のゲージを消費するまでを計算
+                        const specialAttackCount = currentNormalAttackData.epTank * currentSpecialAttackData.gauge;
+                        const totalDamage = normalDamage * 100 + specialDamage * specialAttackCount;
+                        const totalTime = currentNormalAttackData.time * 100 + currentSpecialAttackData.time * specialAttackCount;
+                        currentDps = totalDamage / totalTime;
+                    }
+                    if (currentDps > dps) {
+                        normalAttack = currentNormalAttackData;
+                        specialAttack = currentSpecialAttackData;
+                        dps = currentDps;
+                    }
+                });
+            });
+
+            dpsList.push(
+                {
+                    attackerData: attackerData,
+                    normalAttackData: normalAttack,
+                    specialAttackData: specialAttack,
+                    dps: dps
+                }
+            );
+        });
+
+        dpsList.sort(function (a, b) {
+            return b.dps - a.dps;
+        });
+
+        const millis = Date.now() - start;
+        console.log(`${this.state.targetName}:${millis}ms`);
+        return dpsList;
     }
 }
 
@@ -173,77 +259,6 @@ class Type extends React.Component {
         );
     }
 }
-
-function calc(targetName) {
-
-    const start = Date.now();
-
-    const target = getPokemonData(targetName);
-
-    let dpsList = [];
-    POKEMON_DATA.forEach(attackerData => {
-        // 最大CP2000以下はどうせ結果ふるわないのでスキップ
-        if (attackerData.cp < 2000) {
-            return;
-        }
-
-        // メガシンカはスキップ
-        if (isMegaEvolved(attackerData.name)) {
-            return;
-        }
-
-        let normalAttack = null;
-        let specialAttack = null;
-        let dps = -1;
-
-        // ノーマルアタックとスペシャルアタックのクロスジョインで各DPSを計算する
-        attackerData.normalAttack.forEach(currentNormalAttack => {
-            const currentNormalAttackData = getAttackData(currentNormalAttack);
-            const normalDamage = calcOnceDamage(attackerData, target, currentNormalAttackData);
-            attackerData.specialAttack.forEach(currentSpecialAttack => {
-                const currentSpecialAttackData = getAttackData(currentSpecialAttack);
-                const specialDamage = calcOnceDamage(attackerData, target, currentSpecialAttackData);
-                let currentDps = 0;
-                if (currentSpecialAttackData.gauge === 1) {
-                    // スペシャルアタック1回分を計算
-                    const normalCount = Math.floor(100 / currentNormalAttackData.epTank) + 1;
-                    const totalDamage = normalDamage * normalCount + specialDamage;
-                    const totalTime = currentNormalAttackData.time * normalCount + currentSpecialAttackData.time;
-                    currentDps = totalDamage / totalTime;
-                } else {
-                    // ノーマルアタック100回分のゲージを消費するまでを計算
-                    const specialAttackCount = currentNormalAttackData.epTank * currentSpecialAttackData.gauge;
-                    const totalDamage = normalDamage * 100 + specialDamage * specialAttackCount;
-                    const totalTime = currentNormalAttackData.time * 100 + currentSpecialAttackData.time * specialAttackCount;
-                    currentDps = totalDamage / totalTime;
-                }
-                if (currentDps > dps) {
-                    normalAttack = currentNormalAttackData;
-                    specialAttack = currentSpecialAttackData;
-                    dps = currentDps;
-                }
-            });
-        });
-
-        dpsList.push(
-            {
-                attackerData: attackerData,
-                normalAttackData: normalAttack,
-                specialAttackData: specialAttack,
-                dps: dps
-            }
-        );
-    });
-
-    dpsList.sort(function (a, b) {
-        return b.dps - a.dps;
-    });
-
-    const millis = Date.now() - start;
-    console.log(`${targetName}:${millis}ms`);
-    return dpsList;
-}
-
 
 function calcOnceDamage(attacker, receiver, move) {
 
