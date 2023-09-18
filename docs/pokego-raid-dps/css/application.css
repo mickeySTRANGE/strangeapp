@@ -8,34 +8,30 @@ html {
 body {
     width: min(100%, 70vh);
     max-width: 1000px;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
-}
-
-main {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 header {
     font-size: xx-large;
     color: white;
     background-color: firebrick;
-    /* position: absolute;
-    top: 0; */
     margin-bottom: 1vh;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
+main {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
 
 footer {
-    /* position: absolute;
-    bottom: 0; */
     margin-top: 1vh;
     width: 100%;
     display: flex;
@@ -74,4 +70,75 @@ footer {
 
 .rakutenbanner {
     text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.disabled {
+    color: gray;
+}
+
+#searchArea {
+    margin-bottom: 2vh;
+}
+
+#configArea {
+    margin-bottom: 2vh;
+}
+
+#Calculator {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+#resultArea {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result {
+    width: 100%;
+    border-radius: 1vh;
+    border: thick solid black;
+    padding: 1vh;
+    margin-bottom: 2vh;
+}
+
+.resultRank {
+    font-size: large;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.resultStatus {
+    margin-bottom: 1vh;
+}
+
+.resultAttacks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resultAttacksList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.attack {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.resultAttacksDps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

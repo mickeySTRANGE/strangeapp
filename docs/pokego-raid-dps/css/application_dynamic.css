@@ -1,0 +1,930 @@
+#resultViewCheckbox21:checked~.resultView21 {
+    display: block;
+}
+
+#resultViewCheckbox21:not(checked)~.resultViewOnButton21,
+#resultViewCheckbox21:checked~.resultViewOffButton21 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox21:checked~.resultViewOnButton21,
+#resultViewCheckbox21:not(checked)~.resultViewOffButton21,
+#resultViewCheckbox21:not(checked)~.resultView21 {
+    display: none;
+}
+
+#resultViewCheckbox41:checked~.resultView41 {
+    display: block;
+}
+
+#resultViewCheckbox41:not(checked)~.resultViewOnButton41,
+#resultViewCheckbox41:checked~.resultViewOffButton41 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox41:checked~.resultViewOnButton41,
+#resultViewCheckbox41:not(checked)~.resultViewOffButton41,
+#resultViewCheckbox41:not(checked)~.resultView41 {
+    display: none;
+}
+
+#resultViewCheckbox61:checked~.resultView61 {
+    display: block;
+}
+
+#resultViewCheckbox61:not(checked)~.resultViewOnButton61,
+#resultViewCheckbox61:checked~.resultViewOffButton61 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox61:checked~.resultViewOnButton61,
+#resultViewCheckbox61:not(checked)~.resultViewOffButton61,
+#resultViewCheckbox61:not(checked)~.resultView61 {
+    display: none;
+}
+
+#resultViewCheckbox81:checked~.resultView81 {
+    display: block;
+}
+
+#resultViewCheckbox81:not(checked)~.resultViewOnButton81,
+#resultViewCheckbox81:checked~.resultViewOffButton81 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox81:checked~.resultViewOnButton81,
+#resultViewCheckbox81:not(checked)~.resultViewOffButton81,
+#resultViewCheckbox81:not(checked)~.resultView81 {
+    display: none;
+}
+
+#resultViewCheckbox101:checked~.resultView101 {
+    display: block;
+}
+
+#resultViewCheckbox101:not(checked)~.resultViewOnButton101,
+#resultViewCheckbox101:checked~.resultViewOffButton101 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox101:checked~.resultViewOnButton101,
+#resultViewCheckbox101:not(checked)~.resultViewOffButton101,
+#resultViewCheckbox101:not(checked)~.resultView101 {
+    display: none;
+}
+
+#resultViewCheckbox121:checked~.resultView121 {
+    display: block;
+}
+
+#resultViewCheckbox121:not(checked)~.resultViewOnButton121,
+#resultViewCheckbox121:checked~.resultViewOffButton121 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox121:checked~.resultViewOnButton121,
+#resultViewCheckbox121:not(checked)~.resultViewOffButton121,
+#resultViewCheckbox121:not(checked)~.resultView121 {
+    display: none;
+}
+
+#resultViewCheckbox141:checked~.resultView141 {
+    display: block;
+}
+
+#resultViewCheckbox141:not(checked)~.resultViewOnButton141,
+#resultViewCheckbox141:checked~.resultViewOffButton141 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox141:checked~.resultViewOnButton141,
+#resultViewCheckbox141:not(checked)~.resultViewOffButton141,
+#resultViewCheckbox141:not(checked)~.resultView141 {
+    display: none;
+}
+
+#resultViewCheckbox161:checked~.resultView161 {
+    display: block;
+}
+
+#resultViewCheckbox161:not(checked)~.resultViewOnButton161,
+#resultViewCheckbox161:checked~.resultViewOffButton161 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox161:checked~.resultViewOnButton161,
+#resultViewCheckbox161:not(checked)~.resultViewOffButton161,
+#resultViewCheckbox161:not(checked)~.resultView161 {
+    display: none;
+}
+
+#resultViewCheckbox181:checked~.resultView181 {
+    display: block;
+}
+
+#resultViewCheckbox181:not(checked)~.resultViewOnButton181,
+#resultViewCheckbox181:checked~.resultViewOffButton181 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox181:checked~.resultViewOnButton181,
+#resultViewCheckbox181:not(checked)~.resultViewOffButton181,
+#resultViewCheckbox181:not(checked)~.resultView181 {
+    display: none;
+}
+
+#resultViewCheckbox201:checked~.resultView201 {
+    display: block;
+}
+
+#resultViewCheckbox201:not(checked)~.resultViewOnButton201,
+#resultViewCheckbox201:checked~.resultViewOffButton201 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox201:checked~.resultViewOnButton201,
+#resultViewCheckbox201:not(checked)~.resultViewOffButton201,
+#resultViewCheckbox201:not(checked)~.resultView201 {
+    display: none;
+}
+
+#resultViewCheckbox221:checked~.resultView221 {
+    display: block;
+}
+
+#resultViewCheckbox221:not(checked)~.resultViewOnButton221,
+#resultViewCheckbox221:checked~.resultViewOffButton221 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox221:checked~.resultViewOnButton221,
+#resultViewCheckbox221:not(checked)~.resultViewOffButton221,
+#resultViewCheckbox221:not(checked)~.resultView221 {
+    display: none;
+}
+
+#resultViewCheckbox241:checked~.resultView241 {
+    display: block;
+}
+
+#resultViewCheckbox241:not(checked)~.resultViewOnButton241,
+#resultViewCheckbox241:checked~.resultViewOffButton241 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox241:checked~.resultViewOnButton241,
+#resultViewCheckbox241:not(checked)~.resultViewOffButton241,
+#resultViewCheckbox241:not(checked)~.resultView241 {
+    display: none;
+}
+
+#resultViewCheckbox261:checked~.resultView261 {
+    display: block;
+}
+
+#resultViewCheckbox261:not(checked)~.resultViewOnButton261,
+#resultViewCheckbox261:checked~.resultViewOffButton261 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox261:checked~.resultViewOnButton261,
+#resultViewCheckbox261:not(checked)~.resultViewOffButton261,
+#resultViewCheckbox261:not(checked)~.resultView261 {
+    display: none;
+}
+
+#resultViewCheckbox281:checked~.resultView281 {
+    display: block;
+}
+
+#resultViewCheckbox281:not(checked)~.resultViewOnButton281,
+#resultViewCheckbox281:checked~.resultViewOffButton281 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox281:checked~.resultViewOnButton281,
+#resultViewCheckbox281:not(checked)~.resultViewOffButton281,
+#resultViewCheckbox281:not(checked)~.resultView281 {
+    display: none;
+}
+
+#resultViewCheckbox301:checked~.resultView301 {
+    display: block;
+}
+
+#resultViewCheckbox301:not(checked)~.resultViewOnButton301,
+#resultViewCheckbox301:checked~.resultViewOffButton301 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox301:checked~.resultViewOnButton301,
+#resultViewCheckbox301:not(checked)~.resultViewOffButton301,
+#resultViewCheckbox301:not(checked)~.resultView301 {
+    display: none;
+}
+
+#resultViewCheckbox321:checked~.resultView321 {
+    display: block;
+}
+
+#resultViewCheckbox321:not(checked)~.resultViewOnButton321,
+#resultViewCheckbox321:checked~.resultViewOffButton321 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox321:checked~.resultViewOnButton321,
+#resultViewCheckbox321:not(checked)~.resultViewOffButton321,
+#resultViewCheckbox321:not(checked)~.resultView321 {
+    display: none;
+}
+
+#resultViewCheckbox341:checked~.resultView341 {
+    display: block;
+}
+
+#resultViewCheckbox341:not(checked)~.resultViewOnButton341,
+#resultViewCheckbox341:checked~.resultViewOffButton341 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox341:checked~.resultViewOnButton341,
+#resultViewCheckbox341:not(checked)~.resultViewOffButton341,
+#resultViewCheckbox341:not(checked)~.resultView341 {
+    display: none;
+}
+
+#resultViewCheckbox361:checked~.resultView361 {
+    display: block;
+}
+
+#resultViewCheckbox361:not(checked)~.resultViewOnButton361,
+#resultViewCheckbox361:checked~.resultViewOffButton361 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox361:checked~.resultViewOnButton361,
+#resultViewCheckbox361:not(checked)~.resultViewOffButton361,
+#resultViewCheckbox361:not(checked)~.resultView361 {
+    display: none;
+}
+
+#resultViewCheckbox381:checked~.resultView381 {
+    display: block;
+}
+
+#resultViewCheckbox381:not(checked)~.resultViewOnButton381,
+#resultViewCheckbox381:checked~.resultViewOffButton381 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox381:checked~.resultViewOnButton381,
+#resultViewCheckbox381:not(checked)~.resultViewOffButton381,
+#resultViewCheckbox381:not(checked)~.resultView381 {
+    display: none;
+}
+
+#resultViewCheckbox401:checked~.resultView401 {
+    display: block;
+}
+
+#resultViewCheckbox401:not(checked)~.resultViewOnButton401,
+#resultViewCheckbox401:checked~.resultViewOffButton401 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox401:checked~.resultViewOnButton401,
+#resultViewCheckbox401:not(checked)~.resultViewOffButton401,
+#resultViewCheckbox401:not(checked)~.resultView401 {
+    display: none;
+}
+
+#resultViewCheckbox421:checked~.resultView421 {
+    display: block;
+}
+
+#resultViewCheckbox421:not(checked)~.resultViewOnButton421,
+#resultViewCheckbox421:checked~.resultViewOffButton421 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox421:checked~.resultViewOnButton421,
+#resultViewCheckbox421:not(checked)~.resultViewOffButton421,
+#resultViewCheckbox421:not(checked)~.resultView421 {
+    display: none;
+}
+
+#resultViewCheckbox441:checked~.resultView441 {
+    display: block;
+}
+
+#resultViewCheckbox441:not(checked)~.resultViewOnButton441,
+#resultViewCheckbox441:checked~.resultViewOffButton441 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox441:checked~.resultViewOnButton441,
+#resultViewCheckbox441:not(checked)~.resultViewOffButton441,
+#resultViewCheckbox441:not(checked)~.resultView441 {
+    display: none;
+}
+
+#resultViewCheckbox461:checked~.resultView461 {
+    display: block;
+}
+
+#resultViewCheckbox461:not(checked)~.resultViewOnButton461,
+#resultViewCheckbox461:checked~.resultViewOffButton461 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox461:checked~.resultViewOnButton461,
+#resultViewCheckbox461:not(checked)~.resultViewOffButton461,
+#resultViewCheckbox461:not(checked)~.resultView461 {
+    display: none;
+}
+
+#resultViewCheckbox481:checked~.resultView481 {
+    display: block;
+}
+
+#resultViewCheckbox481:not(checked)~.resultViewOnButton481,
+#resultViewCheckbox481:checked~.resultViewOffButton481 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox481:checked~.resultViewOnButton481,
+#resultViewCheckbox481:not(checked)~.resultViewOffButton481,
+#resultViewCheckbox481:not(checked)~.resultView481 {
+    display: none;
+}
+
+#resultViewCheckbox501:checked~.resultView501 {
+    display: block;
+}
+
+#resultViewCheckbox501:not(checked)~.resultViewOnButton501,
+#resultViewCheckbox501:checked~.resultViewOffButton501 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox501:checked~.resultViewOnButton501,
+#resultViewCheckbox501:not(checked)~.resultViewOffButton501,
+#resultViewCheckbox501:not(checked)~.resultView501 {
+    display: none;
+}
+
+#resultViewCheckbox521:checked~.resultView521 {
+    display: block;
+}
+
+#resultViewCheckbox521:not(checked)~.resultViewOnButton521,
+#resultViewCheckbox521:checked~.resultViewOffButton521 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox521:checked~.resultViewOnButton521,
+#resultViewCheckbox521:not(checked)~.resultViewOffButton521,
+#resultViewCheckbox521:not(checked)~.resultView521 {
+    display: none;
+}
+
+#resultViewCheckbox541:checked~.resultView541 {
+    display: block;
+}
+
+#resultViewCheckbox541:not(checked)~.resultViewOnButton541,
+#resultViewCheckbox541:checked~.resultViewOffButton541 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox541:checked~.resultViewOnButton541,
+#resultViewCheckbox541:not(checked)~.resultViewOffButton541,
+#resultViewCheckbox541:not(checked)~.resultView541 {
+    display: none;
+}
+
+#resultViewCheckbox561:checked~.resultView561 {
+    display: block;
+}
+
+#resultViewCheckbox561:not(checked)~.resultViewOnButton561,
+#resultViewCheckbox561:checked~.resultViewOffButton561 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox561:checked~.resultViewOnButton561,
+#resultViewCheckbox561:not(checked)~.resultViewOffButton561,
+#resultViewCheckbox561:not(checked)~.resultView561 {
+    display: none;
+}
+
+#resultViewCheckbox581:checked~.resultView581 {
+    display: block;
+}
+
+#resultViewCheckbox581:not(checked)~.resultViewOnButton581,
+#resultViewCheckbox581:checked~.resultViewOffButton581 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox581:checked~.resultViewOnButton581,
+#resultViewCheckbox581:not(checked)~.resultViewOffButton581,
+#resultViewCheckbox581:not(checked)~.resultView581 {
+    display: none;
+}
+
+#resultViewCheckbox601:checked~.resultView601 {
+    display: block;
+}
+
+#resultViewCheckbox601:not(checked)~.resultViewOnButton601,
+#resultViewCheckbox601:checked~.resultViewOffButton601 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox601:checked~.resultViewOnButton601,
+#resultViewCheckbox601:not(checked)~.resultViewOffButton601,
+#resultViewCheckbox601:not(checked)~.resultView601 {
+    display: none;
+}
+
+#resultViewCheckbox621:checked~.resultView621 {
+    display: block;
+}
+
+#resultViewCheckbox621:not(checked)~.resultViewOnButton621,
+#resultViewCheckbox621:checked~.resultViewOffButton621 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox621:checked~.resultViewOnButton621,
+#resultViewCheckbox621:not(checked)~.resultViewOffButton621,
+#resultViewCheckbox621:not(checked)~.resultView621 {
+    display: none;
+}
+
+#resultViewCheckbox641:checked~.resultView641 {
+    display: block;
+}
+
+#resultViewCheckbox641:not(checked)~.resultViewOnButton641,
+#resultViewCheckbox641:checked~.resultViewOffButton641 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox641:checked~.resultViewOnButton641,
+#resultViewCheckbox641:not(checked)~.resultViewOffButton641,
+#resultViewCheckbox641:not(checked)~.resultView641 {
+    display: none;
+}
+
+#resultViewCheckbox661:checked~.resultView661 {
+    display: block;
+}
+
+#resultViewCheckbox661:not(checked)~.resultViewOnButton661,
+#resultViewCheckbox661:checked~.resultViewOffButton661 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox661:checked~.resultViewOnButton661,
+#resultViewCheckbox661:not(checked)~.resultViewOffButton661,
+#resultViewCheckbox661:not(checked)~.resultView661 {
+    display: none;
+}
+
+#resultViewCheckbox681:checked~.resultView681 {
+    display: block;
+}
+
+#resultViewCheckbox681:not(checked)~.resultViewOnButton681,
+#resultViewCheckbox681:checked~.resultViewOffButton681 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox681:checked~.resultViewOnButton681,
+#resultViewCheckbox681:not(checked)~.resultViewOffButton681,
+#resultViewCheckbox681:not(checked)~.resultView681 {
+    display: none;
+}
+
+#resultViewCheckbox701:checked~.resultView701 {
+    display: block;
+}
+
+#resultViewCheckbox701:not(checked)~.resultViewOnButton701,
+#resultViewCheckbox701:checked~.resultViewOffButton701 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox701:checked~.resultViewOnButton701,
+#resultViewCheckbox701:not(checked)~.resultViewOffButton701,
+#resultViewCheckbox701:not(checked)~.resultView701 {
+    display: none;
+}
+
+#resultViewCheckbox721:checked~.resultView721 {
+    display: block;
+}
+
+#resultViewCheckbox721:not(checked)~.resultViewOnButton721,
+#resultViewCheckbox721:checked~.resultViewOffButton721 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox721:checked~.resultViewOnButton721,
+#resultViewCheckbox721:not(checked)~.resultViewOffButton721,
+#resultViewCheckbox721:not(checked)~.resultView721 {
+    display: none;
+}
+
+#resultViewCheckbox741:checked~.resultView741 {
+    display: block;
+}
+
+#resultViewCheckbox741:not(checked)~.resultViewOnButton741,
+#resultViewCheckbox741:checked~.resultViewOffButton741 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox741:checked~.resultViewOnButton741,
+#resultViewCheckbox741:not(checked)~.resultViewOffButton741,
+#resultViewCheckbox741:not(checked)~.resultView741 {
+    display: none;
+}
+
+#resultViewCheckbox761:checked~.resultView761 {
+    display: block;
+}
+
+#resultViewCheckbox761:not(checked)~.resultViewOnButton761,
+#resultViewCheckbox761:checked~.resultViewOffButton761 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox761:checked~.resultViewOnButton761,
+#resultViewCheckbox761:not(checked)~.resultViewOffButton761,
+#resultViewCheckbox761:not(checked)~.resultView761 {
+    display: none;
+}
+
+#resultViewCheckbox781:checked~.resultView781 {
+    display: block;
+}
+
+#resultViewCheckbox781:not(checked)~.resultViewOnButton781,
+#resultViewCheckbox781:checked~.resultViewOffButton781 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox781:checked~.resultViewOnButton781,
+#resultViewCheckbox781:not(checked)~.resultViewOffButton781,
+#resultViewCheckbox781:not(checked)~.resultView781 {
+    display: none;
+}
+
+#resultViewCheckbox801:checked~.resultView801 {
+    display: block;
+}
+
+#resultViewCheckbox801:not(checked)~.resultViewOnButton801,
+#resultViewCheckbox801:checked~.resultViewOffButton801 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox801:checked~.resultViewOnButton801,
+#resultViewCheckbox801:not(checked)~.resultViewOffButton801,
+#resultViewCheckbox801:not(checked)~.resultView801 {
+    display: none;
+}
+
+#resultViewCheckbox821:checked~.resultView821 {
+    display: block;
+}
+
+#resultViewCheckbox821:not(checked)~.resultViewOnButton821,
+#resultViewCheckbox821:checked~.resultViewOffButton821 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox821:checked~.resultViewOnButton821,
+#resultViewCheckbox821:not(checked)~.resultViewOffButton821,
+#resultViewCheckbox821:not(checked)~.resultView821 {
+    display: none;
+}
+
+#resultViewCheckbox841:checked~.resultView841 {
+    display: block;
+}
+
+#resultViewCheckbox841:not(checked)~.resultViewOnButton841,
+#resultViewCheckbox841:checked~.resultViewOffButton841 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox841:checked~.resultViewOnButton841,
+#resultViewCheckbox841:not(checked)~.resultViewOffButton841,
+#resultViewCheckbox841:not(checked)~.resultView841 {
+    display: none;
+}
+
+#resultViewCheckbox861:checked~.resultView861 {
+    display: block;
+}
+
+#resultViewCheckbox861:not(checked)~.resultViewOnButton861,
+#resultViewCheckbox861:checked~.resultViewOffButton861 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox861:checked~.resultViewOnButton861,
+#resultViewCheckbox861:not(checked)~.resultViewOffButton861,
+#resultViewCheckbox861:not(checked)~.resultView861 {
+    display: none;
+}
+
+#resultViewCheckbox881:checked~.resultView881 {
+    display: block;
+}
+
+#resultViewCheckbox881:not(checked)~.resultViewOnButton881,
+#resultViewCheckbox881:checked~.resultViewOffButton881 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox881:checked~.resultViewOnButton881,
+#resultViewCheckbox881:not(checked)~.resultViewOffButton881,
+#resultViewCheckbox881:not(checked)~.resultView881 {
+    display: none;
+}
+
+#resultViewCheckbox901:checked~.resultView901 {
+    display: block;
+}
+
+#resultViewCheckbox901:not(checked)~.resultViewOnButton901,
+#resultViewCheckbox901:checked~.resultViewOffButton901 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox901:checked~.resultViewOnButton901,
+#resultViewCheckbox901:not(checked)~.resultViewOffButton901,
+#resultViewCheckbox901:not(checked)~.resultView901 {
+    display: none;
+}
+
+#resultViewCheckbox921:checked~.resultView921 {
+    display: block;
+}
+
+#resultViewCheckbox921:not(checked)~.resultViewOnButton921,
+#resultViewCheckbox921:checked~.resultViewOffButton921 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox921:checked~.resultViewOnButton921,
+#resultViewCheckbox921:not(checked)~.resultViewOffButton921,
+#resultViewCheckbox921:not(checked)~.resultView921 {
+    display: none;
+}
+
+#resultViewCheckbox941:checked~.resultView941 {
+    display: block;
+}
+
+#resultViewCheckbox941:not(checked)~.resultViewOnButton941,
+#resultViewCheckbox941:checked~.resultViewOffButton941 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox941:checked~.resultViewOnButton941,
+#resultViewCheckbox941:not(checked)~.resultViewOffButton941,
+#resultViewCheckbox941:not(checked)~.resultView941 {
+    display: none;
+}
+
+#resultViewCheckbox961:checked~.resultView961 {
+    display: block;
+}
+
+#resultViewCheckbox961:not(checked)~.resultViewOnButton961,
+#resultViewCheckbox961:checked~.resultViewOffButton961 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox961:checked~.resultViewOnButton961,
+#resultViewCheckbox961:not(checked)~.resultViewOffButton961,
+#resultViewCheckbox961:not(checked)~.resultView961 {
+    display: none;
+}
+
+#resultViewCheckbox981:checked~.resultView981 {
+    display: block;
+}
+
+#resultViewCheckbox981:not(checked)~.resultViewOnButton981,
+#resultViewCheckbox981:checked~.resultViewOffButton981 {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border: thin solid black;
+    margin-bottom: 2vh;
+}
+
+#resultViewCheckbox981:checked~.resultViewOnButton981,
+#resultViewCheckbox981:not(checked)~.resultViewOffButton981,
+#resultViewCheckbox981:not(checked)~.resultView981 {
+    display: none;
+}
