@@ -8,9 +8,38 @@ class Calculator extends React.Component {
         const initTarget = "ゲノセクト(ブレイズカセット)";
         this.state = {
             targetName: initTarget,
+            filterText: "",
+            options: POKEMON_DATA.slice(),
             isExcludeMegaEvolved: true,
             isExcludeShadowApex: true
         };
+    }
+
+    onChangePokemonFilterText() {
+        const text = document.getElementById("pokemonFilterText").value;
+
+        const options = [];
+        let targetName = "";
+
+        POKEMON_DATA.forEach(pokemon => {
+            if (text !== "" && pokemon.name.indexOf(text) === -1) {
+                return;
+            }
+            if (this.state.targetName === pokemon.name) {
+                targetName = this.state.targetName;
+            }
+            options.push(pokemon);
+        });
+
+        if (targetName === "" && options.length > 0) {
+            targetName = options[0].name;
+        }
+
+        this.setState({
+            targetName: targetName,
+            filterText: text,
+            options: options
+        });
     }
 
     onChangePokemonSelect() {
@@ -21,31 +50,69 @@ class Calculator extends React.Component {
     renderSearchArea() {
 
         const options = [];
-
-        POKEMON_DATA.forEach(pokemon => {
+        this.state.options.forEach(pokemon => {
             if (this.state.targetName === pokemon.name) {
                 options.push(<option value={pokemon.name} selected>{pokemon.name}</option>);
             } else {
-                options.push(<option value={pokemon.name}>{pokemon.name}</option>);
+                options.push(<option value={pokemon.name} >{pokemon.name}</option>);
             }
         });
 
         return (
             <div id="searchArea">
-                <select id="pokemonSelect" onChange={() => this.onChangePokemonSelect()}>
-                    {options}
-                </select>
+                <div className="areaTitle">
+                    レイドボスの選択
+                </div>
+                <div className="areaRow">
+                    <div style={{ "width": "35%" }}>
+                        絞り込み：
+                    </div>
+                    <input
+                        type="text"
+                        id="pokemonFilterText"
+                        value={this.state.filterText}
+                        onChange={() => this.onChangePokemonFilterText()}
+                        style={{ "font-family": "'RocknRoll One', sans-serif", "width": "65%" }} />
+                </div>
+                <div className="areaRow">
+                    <div style={{ "width": "35%" }}>
+                        選択：
+                    </div>
+                    <select
+                        id="pokemonSelect"
+                        onChange={() => this.onChangePokemonSelect()}
+                        style={{ "font-family": "'RocknRoll One', sans-serif", "width": "65%" }}>
+                        {options}
+                    </select>
+                </div>
             </div>
         );
+    }
+
+    onClickConfigCheckbox(target) {
+        if (target === "megaEvolved") {
+            this.setState({ isExcludeMegaEvolved: !this.state.isExcludeMegaEvolved });
+        } else if (target === "shadowApex") {
+            this.setState({ isExcludeShadowApex: !this.state.isExcludeShadowApex });
+        }
     }
 
     renderConfigArea() {
 
         return (
             <div id="configArea">
-                詳細設定
-                メガシンカがどうとか
-            </div>
+                <div className="areaTitle">
+                    詳細設定
+                </div>
+                <div className="areaRow" onClick={() => this.onClickConfigCheckbox("megaEvolved")} >
+                    {this.state.isExcludeMegaEvolved ? <GoogleIcon name="check_box" /> : <GoogleIcon name="check_box_outline_blank" />}
+                    メガシンカポケモンを除く
+                </div>
+                <div className="areaRow" onClick={() => this.onClickConfigCheckbox("shadowApex")} >
+                    {this.state.isExcludeShadowApex ? <GoogleIcon name="check_box" /> : <GoogleIcon name="check_box_outline_blank" />}
+                    シャドウAPEX専用技を除く
+                </div>
+            </div >
         );
     }
 
@@ -102,6 +169,9 @@ class Calculator extends React.Component {
     }
 
     calc() {
+        if (this.state.targetName === "") {
+            return [];
+        }
         const start = Date.now();
 
         const target = getPokemonData(this.state.targetName);
@@ -113,8 +183,7 @@ class Calculator extends React.Component {
                 return;
             }
 
-            // メガシンカはスキップ
-            if (isMegaEvolved(attackerData.name)) {
+            if (this.state.isExcludeMegaEvolved && isMegaEvolved(attackerData.name)) {
                 return;
             }
 
@@ -127,6 +196,9 @@ class Calculator extends React.Component {
                 const currentNormalAttackData = getAttackData(currentNormalAttack);
                 const normalDamage = calcOnceDamage(attackerData, target, currentNormalAttackData);
                 attackerData.specialAttack.forEach(currentSpecialAttack => {
+                    if (this.state.isExcludeShadowApex && isShadowApex(currentSpecialAttack)) {
+                        return;
+                    }
                     const currentSpecialAttackData = getAttackData(currentSpecialAttack);
                     const specialDamage = calcOnceDamage(attackerData, target, currentSpecialAttackData);
                     let currentDps = 0;
@@ -245,6 +317,20 @@ class IconCrown extends React.Component {
     }
 }
 
+class GoogleIcon extends React.Component {
+    render() {
+        let size = "inherit";
+        if (typeof this.props.size !== "undefined") {
+            size = this.props.size;
+        }
+        return (
+            <span className="material-symbols-outlined" style={{ "font-size": size }}>
+                {this.props.name}
+            </span>
+        );
+    }
+}
+
 class Type extends React.Component {
 
     render() {
@@ -322,11 +408,21 @@ function isMegaEvolved(name) {
     return false;
 }
 
+function isShadowApex(name) {
+    if (name === "せいなるほのお++"
+        || name === "せいなるほのお+"
+        || name === "エアロブラスト++"
+        || name === "エアロブラスト+") {
+        return true;
+    }
+    return false;
+}
+
 function onloadFunc() {
 
     /**
-     * trigger main
-     */
+                * trigger main
+                */
     const reactRoot = ReactDOM.createRoot(document.getElementById("Calculator"));
     reactRoot.render(<Calculator />);
 

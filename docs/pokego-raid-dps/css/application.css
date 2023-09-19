@@ -70,6 +70,7 @@ footer {
 
 .rakutenbanner {
     text-align: center;
+    margin-bottom: 2vh;
 }
 
 .hidden {
@@ -81,10 +82,27 @@ footer {
 }
 
 #searchArea {
+    background-color: mistyrose;
+    border: medium solid darkred;
     margin-bottom: 2vh;
 }
 
+.areaTitle {
+    font-size: large;
+    margin-bottom: 1vh;
+}
+
+.areaRow {
+    padding-right: 5%;
+    padding-left: 5%;
+    margin-bottom: 0.5vh;
+    display: flex;
+    align-items: center;
+}
+
 #configArea {
+    background-color: lightcyan;
+    border: medium solid darkblue;
     margin-bottom: 2vh;
 }
 
