@@ -14,10 +14,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Cherry+Bomb+One&family=Chokokutai&family=Dela+Gothic+One&display=swap"
         rel="stylesheet">
-    <!-- mushi-deck-simulator -->
+    <!-- mushi deck simulator -->
     <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
-    <!-- multi-step-timer -->
+    <!-- multi step timer -->
     <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+    <!-- pokego raid dps -->
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -32,18 +34,21 @@
             <span id="indexTitle">もくじ</span>
             <ul>
                 <li>
-                    <a href="#new-book-notice">新刊通知くん</a>
+                    <a href="#newBookNotice">新刊通知くん</a>
                 </li>
                 <li>
-                    <a href="#mushi-deck-simulator">蟲神器デッキシミュレーター（非公式）</a>
+                    <a href="#mushiDeckSimulator">蟲神器デッキシミュレーター（非公式）</a>
                 </li>
                 <li>
-                    <a href="#multi-step-timer">ステップタイマー</a>
+                    <a href="#multiStepTimer">ステップタイマー</a>
+                </li>
+                <li>
+                    <a href="#pokegoRaidDps">ポケモンGoレイドDPS計算機</a>
                 </li>
             </ul>
         </div>
         <div id="appListContainer">
-            <div class="app" id="new-book-notice">
+            <div class="app" id="newBookNotice">
                 <li class="appTitle" style="font-family: 'メイリオ';">
                     <a href="https://new-book-notice.herokuapp.com/" target="_blank">
                         新刊通知くん
@@ -61,7 +66,7 @@
                     <img src="images/shinkan3.jpeg" width="945" height="1720">
                 </div>
             </div>
-            <div class="app" id="mushi-deck-simulator">
+            <div class="app" id="mushiDeckSimulator">
                 <li class="appTitle" style="font-family: 'Yuji Syuku', serif;">
                     <a href="https://mushi-deck-simulator-ef2b6bec2ae8.herokuapp.com/" target="_blank">
                         蟲神器デッキシミュレーター（非公式）
@@ -79,7 +84,7 @@
                     <img src="images/mushi3.png" width="1440" height="2439">
                 </div>
             </div>
-            <div class="app" id="multi-step-timer">
+            <div class="app" id="multiStepTimer">
                 <li class="appTitle" style="font-family: 'Monomaniac One', sans-serif;">
                     <a href="https://mickeystrange.github.io/strangeapp/multi-step-timer/" target="_blank">
                         ステップタイマー
@@ -94,6 +99,22 @@
                 <div class="appImages">
                     <img src="images/timer1.png" width="1440" height="2607">
                     <img src="images/timer2.png" width="1440" height="2607">
+                </div>
+            </div>
+            <div class="app" id="pokegoRaidDps">
+                <li class="appTitle" style="font-family: 'RocknRoll One', sans-serif;">
+                    <a href="https://mickeystrange.github.io/strangeapp/pokego-raid-dps/" target="_blank">
+                        ポケモンGoレイドDPS計算機
+                    </a>
+                </li>
+                <div class="appOverview">
+                    ポケモンGoのレイドバトルでのDPS計算機です。ボスポケモンを選択すると、ポケモンとわざの組み合わせをDPSの高い順に表示します。
+                </div>
+                <div id="pokegoRaidDpsVersion" class="appVersion">
+                    &nbsp;
+                </div>
+                <div class="appImages">
+                    <img src="images/pokego1.png" width="1440" height="2607">
                 </div>
             </div>
             <div class="app" style="display: none;">

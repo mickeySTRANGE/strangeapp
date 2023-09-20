@@ -20,6 +20,10 @@ function setAppVersion() {
         {
             url: "https://mickeystrange.github.io/strangeapp/multi-step-timer/version.txt",
             id: "multiStepTimerVersion"
+        },
+        {
+            url: "https://mickeystrange.github.io/strangeapp/pokego-raid-dps/version.txt",
+            id: "pokegoRaidDpsVersion"
         }
     ];
 

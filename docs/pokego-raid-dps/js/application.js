@@ -421,8 +421,8 @@ function isShadowApex(name) {
 function onloadFunc() {
 
     /**
-                * trigger main
-                */
+     * trigger main
+     */
     const reactRoot = ReactDOM.createRoot(document.getElementById("Calculator"));
     reactRoot.render(<Calculator />);
 
